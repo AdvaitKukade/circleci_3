@@ -1,0 +1,29 @@
+version: 2 
+jobs:
+  build:
+    docker:
+      - image: ruby:2.4.0-jessie
+        environment:
+          LANG: C.UTF-8
+    working_directory: /my-project
+    parallelism: 2
+    steps:
+      - checkout
+      - run: echo "run some tests"
+      - deploy:
+          name: conditionally run a deploy job
+          command: |
+            if [[ true ]]; then
+              curl --user ${CIRCLE_API_USER_TOKEN}: 
+                --data build_parameters[CIRCLE_JOB]=deploy_docker 
+                --data revision=$CIRCLE_SHA1 
+                https://circleci.com/api/v1.1/project/github/AdvaitKukade/circleci_3/tree/Master
+            fi
+  
+  deploy_docker:           
+    docker:
+      - image: ruby:2.4.0.-jessie
+    working_directory: /
+    steps:
+      - setup_remote_docker
+      - run: echpo "deploy section running"
