@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 jobs:
   build:
     docker:
@@ -26,4 +26,4 @@ jobs:
     working_directory: /
     steps:
       - setup_remote_docker
-      - run: echpo "deploy section running"
+      - run: echo "deploy section running"
