@@ -5,8 +5,8 @@ jobs:
       - image: alpine
         environment:
           LANG: C.UTF-8
-    #working_directory: /my-project
-    #parallelism: 2
+    working_directory: /my-project
+    parallelism: 2
     steps:
       - checkout
       - run: echo "run some tests"
@@ -16,7 +16,7 @@ jobs:
           #if [[ true ]]; then
               curl --user ${CIRCLE_API_USER_TOKEN}:
                 --data build_parameters[CIRCLE_JOB]=deploy_docker 
-                --data revision=$CIRCLE_SHA1 
+                #--data revision=$CIRCLE_SHA1 
                 https://circleci.com/api/v1.1/project/github/AdvaitKukade/circleci_3/tree/Master
           #fi
   
@@ -25,5 +25,5 @@ jobs:
       - image: alpine
     working_directory: /
     steps:
-      #- setup_remote_docker
+     #- setup_remote_docker
       - run: echo "deploy section running"
