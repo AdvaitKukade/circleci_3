@@ -14,7 +14,7 @@ jobs:
           name: conditionally run a deploy job
           command: |
             if [[ true ]]; then
-              curl --user 660cd7e7c05cd8091648d1812fe0bbd0b5760a88: 
+              curl --user ${CIRCLE_API_TOKEN}
                 --data build_parameters[CIRCLE_JOB]=deploy_docker 
                 --data revision=$CIRCLE_SHA1 
                 https://circleci.com/api/v1.1/project/github/AdvaitKukade/circleci_3/tree/Master
