@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run: echo "run some tests"
       - run: apk add curl
-      - run:
+      - deploy:
           name: conditionally run a deploy job
           command: |
           #if [[ true ]]; then
