@@ -28,3 +28,8 @@ jobs:
     steps:
      #- setup_remote_docker
       - run: echo "deploy section running"
+      
+workflows:
+  workflow_1:
+    jobs:
+      - build
