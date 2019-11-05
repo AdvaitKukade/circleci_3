@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alpine:3.5
+      - image: alpine
         environment:
           LANG: C.UTF-8
     working_directory: /my-project
@@ -22,7 +22,7 @@ jobs:
   
   deploy_docker:           
     docker:
-      - image: alpine:3.5
+      - image: alpine
     working_directory: /
     steps:
       - setup_remote_docker
