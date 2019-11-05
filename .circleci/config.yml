@@ -1,4 +1,4 @@
-version: 2.0
+version: 2
 jobs:
   build:
     docker:
@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run: echo "run some tests"
       - run: apk add curl
-      - deploy:
+      - run:
           name: conditionally run a deploy job
           command: |
           #if [[ true ]]; then
