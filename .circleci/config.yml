@@ -3,33 +3,17 @@ jobs:
   build:
     docker:
       - image: alpine
-        environment:
-          LANG: C.UTF-8
-    working_directory: /my-project
-    parallelism: 2
     steps:
-      - checkout
-      - run: echo "run some tests"
-      - run: apk add curl
-      - deploy:
-          name: conditionally run a deploy job
-          command: |
-          #if [[ true ]]; then
-              curl --user ${MyToken}:
-                --data build_parameters[CIRCLE_JOB]=deploy_docker 
-                #--data revision=$CIRCLE_SHA1 
-                https://circleci.com/api/v1.1/project/github/AdvaitKukade/circleci_3/tree/Master
-          #fi
-  
+      - run: echo "In build job."
   deploy_docker:           
     docker:
       - image: alpine
-    working_directory: /
     steps:
      #- setup_remote_docker
-      - run: echo "deploy section running"
+      - run: echo "deploy_docker section running"
       
 workflows:
   workflow_1:
     jobs:
       - build
+      - deploy_docker
