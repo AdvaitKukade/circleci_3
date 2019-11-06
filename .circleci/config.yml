@@ -10,5 +10,4 @@ jobs:
           name: Replacing Environment variable.
           environment:
             db_user: admin
-      
-      - run: echo ${db_user}
+          command: echo ${db_user}      
