@@ -1,21 +1,20 @@
-version: 2.1
+version: 2
 jobs:
   build:
     docker:
-      - image: alpine
+      - image: circleci/node:4.8.2-jessie
+      - image: mongo:3.4.4-jessie
     steps:
-      - run: echo "In build job."
-  
-  deploy_docker:           
-    docker:
-      - image: alpine
-    steps:
-     - run: echo "deploy_docker section running"
-     #- setup_remote_docker
-      
-      
-workflows:
-  workflow_1:
-    jobs:
-      - build
-      - deploy_docker
+      - checkout
+      - run:
+          name: Update npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install npm wee
+          command: npm install 
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
