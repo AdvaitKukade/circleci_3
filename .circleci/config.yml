@@ -7,6 +7,9 @@ jobs:
           db_user: advait
     steps:
       - run:
+          name: Printing the earlier environment variable
+          command: echo ${db_user}
+      - run:
           name: Replacing Environment variable.
           environment:
             db_user: admin
