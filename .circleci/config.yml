@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:4.8.2-jessie
-      - image: mongo:3.4.4-jessie
+      - image: circleci/node:4.8.2
+      - image: mongo:3.4.4
     steps:
       - checkout
       - run:
