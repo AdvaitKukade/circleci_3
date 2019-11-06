@@ -1,20 +1,14 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/node:4.8.2
-      - image: mongo:3.4.4
+  build: 
+    docker: 
+      - image: circleci/postgres:9.6.5
+        environment:
+          db_user: advait
     steps:
-      - checkout
       - run:
-          name: Update npm
-          command: 'sudo npm install -g npm@latest'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install npm wee
-          command: npm install 
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
+          name: Replacing Environment variable.
+          environment:
+            db_user: admin
+      
+      - run: echo ${db_user}
